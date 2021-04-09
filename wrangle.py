@@ -66,6 +66,22 @@ def wrangle_video_games():
     User_Score_mean = round(df.User_Score.mean(), 1)
     df['User_Score'] = df['User_Score'].fillna(User_Score_mean)
     
+    ## Columns to look for outliers
+    # NA_sales
+    df = df[df.NA_Sales < 2]
+    
+    # EU_sales
+    df = df[df.EU_Sales < 1]
+    
+    # JP_sales
+    df = df[df.JP_Sales < .4]
+    
+    # Other_sales
+    df = df[df.Other_Sales < 1]
+    
+    # Global_sales
+    df = df[df.Global_Sales < 6]
+    
     
     ## make dummy variables for objects
     # dummy platform
@@ -170,3 +186,13 @@ def split_seperate_scale(df, stratify_by= None):
     
     return train, validate, test, X_train, y_train, X_validate, y_validate, X_test, y_test, train_scaled, validate_scaled, test_scaled
 
+# Misc ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+def remove_dup_columns(frame):
+    keep_names = set()
+    keep_icols = list()
+    for icol, name in enumerate(frame.columns):
+        if name not in keep_names:
+            keep_names.add(name)
+            keep_icols.append(icol)
+    return frame.iloc[:, keep_icols]
