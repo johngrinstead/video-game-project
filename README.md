@@ -9,7 +9,7 @@ Welcome to the README file for my Video Game Project.
 In here, you will find expanded information on this project including goals, how we will be working through the pipeline and a data dictionary to help offer more insight to the variables that are being used.
 
 ------------
-![couple looking at house](https://www.zillowstatic.com/s3/homepage/static/Buy_a_home.png)
+## Image goes here 
 ​
 ***
 [[Project Description](#project_description)]
